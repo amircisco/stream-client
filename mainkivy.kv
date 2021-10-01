@@ -1,0 +1,1645 @@
+# -*- coding: utf-8 -*-
+
+<WindowManager>
+    Tizer
+        name: "Tizer"
+        BoxLayout:
+            orientation:"vertical"
+            size:self.parent.width,self.parent.height
+            VideoPlayerNoCrl
+                source:"none.jpg"
+                width:self.parent.width
+                height:self.parent.height
+
+    KivyShowVideoFrames
+        name: "KivyShowVideoFrames"
+
+        BoxLayout:
+            size_hint:1,1
+            orientation:'vertical'
+            BoxLayout:
+                size_hint:1,.07
+                ActionBar:
+                    pos_hint:{'top':1}
+                    ActionView:
+                        use_seprator:True
+                        ActionPrevious:
+                            with_previous:False
+                            app_icon:''
+                        ActionButton:
+                            id:reset_sender
+                            font_size:16
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            on_press:app.clicked_reset()
+                        ActionButton:
+                            id:menu_btn_users
+                            font_size:16
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            on_press:self.parent.parent.parent.parent.parent.clicked_users()
+                        ActionButton:
+                            id:menu_btn_setting
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            font_size:16
+                            on_press:self.parent.parent.parent.parent.parent.clicked_setting()
+                        ActionButton:
+                            id:menu_btn_history
+                            font_size:16
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            on_press:self.parent.parent.parent.parent.parent.clicked_history()
+                        ActionButton:
+                            id:menu_btn_disconnect
+                            font_size:16
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            on_press:self.parent.parent.parent.parent.parent.clicked_dissconnect()
+                        ActionButton:
+                            id:menu_btn_connect
+                            font_size:16
+                            font_name:'Assets/Fonts/BTitrBd.ttf'
+                            on_press:self.parent.parent.parent.parent.parent.clicked_connect()
+
+            BoxLayout:
+                size_hint:1,.93
+                orientation : "horizontal"
+                padding:10
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint:.29,1
+                    BoxLayout:
+                        orientation:"vertical"
+                        size_hint:1,.94
+                        GridLayout:
+                            cols:3
+                            rows:1
+                            size_hint:1,.9
+                            id:parent_grid_tbls
+                            opacity:0
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.03
+                                    font_size:22
+                                    font_name:"Assets/Fonts/BKoodakBold.ttf"
+                                    id:label_pelak
+
+
+                                ScrollView:
+                                    GridLayout:
+                                        id:data_grid_pelak
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        row_default_height: self.parent.parent.width
+                                        cols:1
+
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.03
+                                    id:label_face
+                                    font_size:22
+                                    font_name:"Assets/Fonts/BKoodakBold.ttf"
+
+                                ScrollView:
+                                    GridLayout:
+                                        id:data_grid_face
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        row_default_height: self.parent.parent.width
+                                        cols:1
+
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.03
+                                    id:label_person
+                                    font_size:22
+                                    font_name:"Assets/Fonts/BKoodakBold.ttf"
+
+                                ScrollView:
+                                    GridLayout:
+                                        id:data_grid_person
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        row_default_height: self.parent.parent.width
+                                        cols:1
+
+                        GridLayout:
+                            size_hint:1,.1
+                            rows:2
+                            cols:1
+
+                            BoxLayout:
+                                orientation:"horizontal"
+                                size_hint:1,.3
+                                Image:
+                                    id:state_connection
+                                    source:"Assets/icons/state_silver.png"
+                                Label:
+                                    id:txt_info_last_time
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                Label:
+                                    text:''
+                                    id:txt_info_soojeh_name
+
+                            BoxLayout:
+                                orientation:"horizontal"
+                                size_hint:1,.7
+                                Label:
+                                    text:''
+                                    id:txt_info_free_hard_size
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                Label:
+                                    id:txt_info_used_hard_size
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                Label:
+                                    id:txt_info_total_hard_size
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+
+
+                BoxLayout:
+                    size_hint:.70,1
+                    FloatLayout:
+                        size_hint:1,1
+
+                        KivyCamera:
+                            id: qrcam
+                            source:"Assets/icons/66.png"
+                            width:self.parent.width
+                            height:self.parent.height
+                            pos_hint: {"x":0,"y":0}
+
+                        GridLayout:
+                            pos_hint: {"x":0,"y":0}
+                            width: self.parent.width
+                            height: self.parent.height
+                            cols:2
+                            rows:2
+                            id:parent_grid_videos
+
+                            BoxLayout:
+                                padding:6
+                                orientation:"vertical"
+                                width:self.parent.width/2
+                                height:self.parent.height/2
+                                BoxLayout:
+                                    size_hint:1,.9
+                                BoxLayout:
+                                    opacity:0
+                                    id:grid_box_1
+                                    spacing:10
+                                    orientation: "horizontal"
+                                    size_hint:1,.1
+                                    Label:
+                                        id:cam1_name1
+                                        font_name:'Assets/Fonts/BKoodakBold.ttf'
+                                        font_size:20
+                                        size_hint_x:.9
+                                    Label:
+                                        size_hint_x:.2
+                                    IconButtonFullScreen:
+                                        id_id:"full_screen1"
+                                        size_hint_x:.2
+                                        source:"Assets/icons/fullscreen-enter.png"
+                                    GridLayout:
+                                        cols:3
+                                        rows:3
+                                        size_hint_x:.2
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam1_up
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/up.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam1_left
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/left.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam1_right
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/right.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam1_down
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/down.png"
+                                        Label:
+                                            size_hint:.45,.3
+
+                                    BoxLayout:
+                                        size_hint_x:.2
+                                        orientation:"horizontal"
+                                        IconButtonZoom:
+                                            id:cam1_in
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-in.png'
+
+
+                                        Label:
+                                            size_hint:.1,.9
+                                        IconButtonZoom:
+                                            id:cam1_out
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-out.png'
+
+
+
+                            BoxLayout:
+                                padding:6
+                                orientation:"vertical"
+                                width:self.parent.width/2
+                                height:self.parent.height/2
+                                BoxLayout:
+                                    size_hint:1,.9
+                                BoxLayout:
+                                    opacity:0
+                                    id:grid_box_2
+                                    orientation: "horizontal"
+                                    size_hint:1,.1
+                                    Label:
+                                        id:cam2_name2
+                                        font_name:'Assets/Fonts/BKoodakBold.ttf'
+                                        font_size:20
+                                        size_hint_x:.9
+                                    Label:
+                                        size_hint_x:.2
+                                    IconButtonFullScreen:
+                                        id_id:"full_screen2"
+                                        size_hint_x:.2
+                                        source:"Assets/icons/fullscreen-enter.png"
+                                    GridLayout:
+                                        cols:3
+                                        rows:3
+                                        size_hint_x:.2
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam2_up
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/up.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam2_left
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/left.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam2_right
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/right.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam2_down
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/down.png"
+                                        Label:
+                                            size_hint:.45,.3
+
+
+                                    BoxLayout:
+                                        size_hint_x:.2
+                                        orientation:"horizontal"
+                                        IconButtonZoom:
+                                            id:cam2_in
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-in.png'
+
+
+                                        Label:
+                                            size_hint:.1,.9
+                                        IconButtonZoom:
+                                            id:cam2_out
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-out.png'
+
+
+
+
+                            BoxLayout:
+                                padding:6
+                                orientation:"vertical"
+                                width:self.parent.width/2
+                                height:self.parent.height/2
+                                BoxLayout:
+                                    size_hint:1,.9
+                                BoxLayout:
+                                    opacity:0
+                                    id:grid_box_3
+                                    orientation: "horizontal"
+                                    size_hint:1,.1
+                                    Label:
+                                        id:cam3_name3
+                                        font_name:'Assets/Fonts/BKoodakBold.ttf'
+                                        font_size:20
+                                        size_hint_x:.9
+                                    Label:
+                                        size_hint_x:.2
+                                    IconButtonFullScreen:
+                                        id_id:"full_screen3"
+                                        size_hint_x:.2
+                                        source:"Assets/icons/fullscreen-enter.png"
+                                    GridLayout:
+                                        cols:3
+                                        rows:3
+                                        size_hint_x:.2
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam3_up
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/up.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam3_left
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/left.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam3_right
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/right.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam3_down
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/down.png"
+                                        Label:
+                                            size_hint:.45,.3
+
+
+                                    BoxLayout:
+                                        size_hint_x:.2
+                                        orientation:"horizontal"
+                                        IconButtonZoom:
+                                            id:cam3_in
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-in.png'
+
+
+                                        Label:
+                                            size_hint:.1,.9
+                                        IconButtonZoom:
+                                            id:cam3_out
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-out.png'
+
+
+
+
+                            BoxLayout:
+                                padding:6
+                                orientation:"vertical"
+                                width:self.parent.width/2
+                                height:self.parent.height/2
+                                BoxLayout:
+                                    size_hint:1,.9
+                                BoxLayout:
+                                    opacity:0
+                                    id:grid_box_4
+                                    orientation: "horizontal"
+                                    size_hint:1,.1
+                                    Label:
+                                        id:cam4_name4
+                                        font_name:'Assets/Fonts/BKoodakBold.ttf'
+                                        font_size:20
+                                        size_hint_x:.9
+                                    Label:
+                                        size_hint_x:.2
+                                    IconButtonFullScreen:
+                                        id_id:"full_screen4"
+                                        size_hint_x:.2
+                                        source:"Assets/icons/fullscreen-enter.png"
+                                    GridLayout:
+                                        cols:3
+                                        rows:3
+                                        size_hint_x:.2
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam4_up
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/up.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam4_left
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/left.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam4_right
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/right.png"
+                                        Label:
+                                            size_hint:.45,.3
+                                        IconButtonArrow:
+                                            id:cam4_down
+                                            size_hint:.45,.3
+                                            source:"Assets/icons/down.png"
+                                        Label:
+                                            size_hint:.45,.3
+
+
+                                    BoxLayout:
+                                        size_hint_x:.2
+                                        orientation:"horizontal"
+                                        IconButtonZoom:
+                                            id:cam4_in
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-in.png'
+
+
+                                        Label:
+                                            size_hint:.1,.9
+                                        IconButtonZoom:
+                                            id:cam4_out
+                                            size_hint:.45,.9
+                                            source: 'Assets/icons/zoom-out.png'
+                                            background_normal:'Assets/icons/zoom-out.png'
+                                            background_down:'Assets/icons/back_blue_down.png'
+
+
+
+    CustomSetting
+        name:"customsetting"
+        BoxLayout:
+            size_hint:1,1
+            orientation:'horizontal'
+            BoxLayout:
+                size_hint:.5,1
+            BoxLayout:
+                padding:10
+                orientation:'vertical'
+                size_hint:.5,1
+                ScrollView:
+                    size_hint:1,.92
+                    GridLayout:
+                        size_hint_y: None
+                        height:self.minimum_height
+                        padding:10
+                        spacing:15
+                        cols:2
+                        TextInput:
+                            size_hint:.5,None
+                            id:txt_reciver_ip
+                            height:30
+                            padding:5
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_reciver_ip
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        TextInput:
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_sender_ip
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_sender_ip
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        Switch:
+                            size_hint:.5,None
+                            height:30
+                            id:txt_do_save_video
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_do_save_video
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        Switch:
+                            size_hint:.5,None
+                            height:30
+                            id:txt_do_save_video_in_sender
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            text:app.convert_code_string('save_video_in_sender')
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        BoxLayout:
+                            orientation:"horizontal"
+                            size_hint:.5,None
+                            padding:5
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_qu_frame_up
+                                group:'qu'
+                                size_hint:None,None
+                                text:app.convert_code_string('up')
+                                height:30
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_qu_frame_middle
+                                group:'qu'
+                                size_hint:None,None
+                                text:app.convert_code_string('middle')
+                                height:30
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_qu_frame_down
+                                group:'qu'
+                                size_hint:None,None
+                                text:app.convert_code_string('down')
+                                height:30
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            text:app.convert_code_string('quality_frame')
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        BoxLayout:
+                            orientation:"horizontal"
+                            size_hint:.5,None
+                            padding:5
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_cont_detect_high
+                                group:'cont_detect'
+                                size_hint:None,None
+                                text:app.convert_code_string('high')
+                                height:30
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_cont_detect_middle
+                                group:'cont_detect'
+                                size_hint:None,None
+                                text:app.convert_code_string('middle')
+                                height:30
+                            ToggleButton:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:txt_cont_detect_low
+                                group:'cont_detect'
+                                size_hint:None,None
+                                text:app.convert_code_string('low')
+                                height:30
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            text:app.convert_code_string('count_frame_detect')
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        TextInput:
+                            spacing:5
+                            size_hint:.2,None
+                            height:30
+                            id:txt_count_tbl_face
+
+                        Label:
+                            size_hint:.8,None
+                            height:30
+                            id:lbl_count_tbl_face
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        TextInput:
+                            spacing:5
+                            size_hint:.2,None
+                            height:30
+                            id:txt_count_tbl_pelak
+
+                        Label:
+                            size_hint:.8,None
+                            height:30
+                            id:lbl_count_tbl_pelak
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        TextInput:
+                            spacing:5
+                            size_hint:.2,None
+                            height:30
+                            id:txt_count_tbl_person
+
+                        Label:
+                            size_hint:.8,None
+                            height:30
+                            id:lbl_count_tbl_person
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+
+                        TextInput:
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_cam_name1
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_cam_name1
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        TextInput:
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_cam_name2
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_cam_name2
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        TextInput:
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_cam_name3
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_cam_name3
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        TextInput:
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_cam_name4
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_cam_name4
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+                        Switch:
+                            size_hint:.5,None
+                            height:30
+                            id:txt_enbale_3g
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_enbale_3g
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        GridLayout:
+                            cols:2
+                            rows:3
+                            spacing:5
+                            size_hint:.5,None
+                            CheckBox:
+                                id:txt_ch_box_show_camera1
+                                group:'ch_box_show_camera'
+                            Label:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:lbl_ch_box_show_camera1
+                            CheckBox:
+                                id:txt_ch_box_show_camera2
+                                group:'ch_box_show_camera'
+                            Label:
+                                font_name:"Assets/Fonts/BTitrBd.ttf"
+                                id:lbl_ch_box_show_camera2
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_show_camera
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        TextInput:
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_soojeh_name
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            id:lbl_soojeh_name
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                        TextInput:
+                            spacing:5
+                            size_hint:.5,None
+                            height:30
+                            id:txt_key
+
+                        Label:
+                            size_hint:.5,None
+                            height:30
+                            text:app.convert_code_string('key')
+                            font_name:"Assets/Fonts/BTitrBd.ttf"
+
+
+                BoxLayout:
+                    padding:10
+                    size_hint:1,.08
+                    orientation:'horizontal'
+                    Button:
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        id:btn_exit_lsetting
+                        size_hint:.5,1
+                        on_press:self.parent.parent.parent.parent.clicked_btn_exit()
+                    Button:
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        id:btn_save_lsetting
+                        size_hint:.5,1
+                        on_press:self.parent.parent.parent.parent.clicked_btn_save_before()
+
+
+
+
+
+
+
+
+    History
+        name:"history"
+        size_hint:1,1
+        BoxLayout:
+            size_hint:1,1
+            orientation:'vertical'
+            BoxLayout:
+                size_hint:1,.93
+                TabbedPanel:
+                    size_hint:1,1
+                    do_default_tab: False
+
+                    TabbedPanelItem:
+                        id:lbl_tab_item_cam_name1
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        BoxLayout:
+                            size_hint:1,1
+                            orientation:"horizontal"
+                            BoxLayout:
+                                size_hint:.70,1
+                                orientation:"vertical"
+                                GridLayout:
+                                    opacity:0
+                                    id:grid_header_result_search1
+                                    size_hint:1,.1
+                                    cols:5
+                                    Label:
+                                        size_hint_x:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('moshahede')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('saat')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tarikh')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tasvir')
+                                    Label:
+                                        size_hint_x:.02
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('radif')
+                                ScrollView:
+                                    size_hint:1,.9
+                                    padding:10
+                                    GridLayout:
+                                        row_default_height: '100dp'
+                                        height: self.minimum_height
+                                        size_hint_y: None
+                                        id:grid_result_search1
+                                        cols:5
+                                        spacing:10
+                                        padding:10
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                size_hint:.23,1
+                                padding:5
+                                BoxLayout:
+                                    size_hint_y:.03
+                                BoxLayout:
+                                    size_hint_y:.05
+                                    orientation:'horizontal'
+                                    Spinner:
+                                        text:'../'
+                                        id:txt_select_soojeh1
+                                        values:app.get_list_soojeh()
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('select_soojeh')
+                                BoxLayout:
+                                    size_hint:1,.1
+                                    text:''
+                                GridLayout:
+                                    spacing:10
+                                    padding:10
+                                    size_hint:1,.3
+                                    cols:4
+
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:az_sal_sp1
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:az_mah_sp1
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:az_rooz_sp1
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.4
+                                        text:app.convert_code_string('az_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.4
+                                    Label:
+                                        size_hint_y:.4
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:az_saat_sp1
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.4
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('az_saat')
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:ta_sal_sp1
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:ta_mah_sp1
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:ta_rooz_sp1
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.4
+                                        text:app.convert_code_string('ta_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.4
+                                    Label:
+                                        size_hint_y:.4
+                                    Spinner:
+                                        size_hint_y:.4
+                                        id:ta_saat_sp1
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.4
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('ta_saat')
+                                    Label:
+                                        size_hint_y:.4
+                                        text:'  '
+                                    Button:
+                                        size_hint_y:.4
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        id:btn_search_history1
+                                        text:app.convert_code_string('search')
+                                        on_press:self.parent.parent.parent.parent.parent.parent.parent.parent.clicked_btn_search(1)
+                                    Label:
+                                        size_hint_y:.4
+                                        text:'  '
+                                    Label:
+                                        size_hint_y:.4
+                                        text:'  '
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+
+                            BoxLayout:
+                                size_hint:.05,1
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.04
+                                    text:''
+                                Label:
+                                    size_hint:1,.01
+                                    id:lbl_tab_cam1_title
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                GridLayout:
+                                    size_hint:1,.98
+                                    cols:2
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('chehreh')
+                                    CheckBox:
+                                        id:txt_ch_box_history_face1
+                                        group:'ch_box_show_camera'
+                                        active:True
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('pelak')
+                                    CheckBox:
+                                        id:txt_ch_box_history_pelak1
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('person')
+                                    CheckBox:
+                                        id:txt_ch_box_history_person1
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('videos')
+                                    CheckBox:
+                                        id:txt_ch_box_history_video1
+                                        group:'ch_box_show_camera'
+
+                    TabbedPanelItem:
+                        id:lbl_tab_item_cam_name2
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        BoxLayout:
+                            size_hint:1,1
+                            orientation:"horizontal"
+                            BoxLayout:
+                                size_hint:.70,1
+                                orientation:"vertical"
+                                GridLayout:
+                                    opacity:0
+                                    id:grid_header_result_search2
+                                    size_hint:1,.1
+                                    cols:5
+                                    Label:
+                                        size_hint_x:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('moshahede')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('saat')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tarikh')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tasvir')
+                                    Label:
+                                        size_hint_x:.02
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('radif')
+                                ScrollView:
+                                    size_hint:1,.9
+                                    padding:10
+                                    GridLayout:
+                                        row_default_height: '100dp'
+                                        height: self.minimum_height
+                                        size_hint_y: None
+                                        id:grid_result_search2
+                                        cols:5
+                                        spacing:10
+                                        padding:10
+
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                size_hint:.23,1
+                                padding:5
+                                BoxLayout:
+                                    size_hint_y:.03
+                                BoxLayout:
+                                    size_hint_y:.05
+                                    orientation:'horizontal'
+                                    Spinner:
+                                        text:'../'
+                                        id:txt_select_soojeh2
+                                        values:app.get_list_soojeh()
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('select_soojeh')
+                                BoxLayout:
+                                    size_hint:1,.1
+                                    text:''
+                                GridLayout:
+                                    spacing:10
+                                    padding:10
+                                    size_hint:1,.3
+                                    cols:4
+
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_sal_sp2
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_mah_sp2
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_rooz_sp2
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('az_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_saat_sp2
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('az_saat')
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_sal_sp2
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_mah_sp2
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_rooz_sp2
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('ta_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_saat_sp2
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('ta_saat')
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Button:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        id:btn_search_history2
+                                        text:app.convert_code_string('search')
+                                        on_press:self.parent.parent.parent.parent.parent.parent.parent.parent.clicked_btn_search(2)
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+
+
+                            BoxLayout:
+                                size_hint:.05,1
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.04
+                                    text:''
+                                Label:
+                                    size_hint:1,.01
+                                    id:lbl_tab_cam2_title
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                GridLayout:
+                                    size_hint:1,.98
+                                    cols:2
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('chehreh')
+                                    CheckBox:
+                                        id:txt_ch_box_history_face2
+                                        group:'ch_box_show_camera'
+                                        active:True
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('pelak')
+                                    CheckBox:
+                                        id:txt_ch_box_history_pelak2
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('person')
+                                    CheckBox:
+                                        id:txt_ch_box_history_person2
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('videos')
+                                    CheckBox:
+                                        id:txt_ch_box_history_video2
+                                        group:'ch_box_show_camera'
+
+                    TabbedPanelItem:
+                        id:lbl_tab_item_cam_name3
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        BoxLayout:
+                            size_hint:1,1
+                            orientation:"horizontal"
+                            BoxLayout:
+                                size_hint:.70,1
+                                orientation:"vertical"
+                                GridLayout:
+                                    opacity:0
+                                    id:grid_header_result_search3
+                                    size_hint:1,.1
+                                    cols:5
+                                    Label:
+                                        size_hint_x:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('moshahede')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('saat')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tarikh')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tasvir')
+                                    Label:
+                                        size_hint_x:.02
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('radif')
+                                ScrollView:
+                                    size_hint:1,.9
+                                    padding:10
+                                    GridLayout:
+                                        row_default_height: '100dp'
+                                        height: self.minimum_height
+                                        size_hint_y: None
+                                        id:grid_result_search3
+                                        cols:5
+                                        spacing:10
+                                        padding:10
+
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                size_hint:.23,1
+                                padding:5
+                                BoxLayout:
+                                    size_hint_y:.03
+                                BoxLayout:
+                                    size_hint_y:.05
+                                    orientation:'horizontal'
+                                    Spinner:
+                                        text:'../'
+                                        id:txt_select_soojeh3
+                                        values:app.get_list_soojeh()
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('select_soojeh')
+                                BoxLayout:
+                                    size_hint:1,.1
+                                    text:''
+
+                                GridLayout:
+                                    spacing:10
+                                    padding:10
+                                    size_hint:1,.3
+                                    cols:4
+
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_sal_sp3
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_mah_sp3
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_rooz_sp3
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('az_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_saat_sp3
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('az_saat')
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_sal_sp3
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_mah_sp3
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_rooz_sp3
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('ta_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_saat_sp3
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('ta_saat')
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Button:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        id:btn_search_history3
+                                        text:app.convert_code_string('search')
+                                        on_press:self.parent.parent.parent.parent.parent.parent.parent.parent.clicked_btn_search(3)
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+
+
+                            BoxLayout:
+                                size_hint:.05,1
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.04
+                                    text:''
+                                Label:
+                                    size_hint:1,.01
+                                    id:lbl_tab_cam3_title
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                GridLayout:
+                                    size_hint:1,.98
+                                    cols:2
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('chehreh')
+                                    CheckBox:
+                                        id:txt_ch_box_history_face3
+                                        group:'ch_box_show_camera'
+                                        active:True
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('pelak')
+                                    CheckBox:
+                                        id:txt_ch_box_history_pelak3
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('person')
+                                    CheckBox:
+                                        id:txt_ch_box_history_person3
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('videos')
+                                    CheckBox:
+                                        id:txt_ch_box_history_video3
+                                        group:'ch_box_show_camera'
+
+                    TabbedPanelItem:
+                        id:lbl_tab_item_cam_name4
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        BoxLayout:
+                            size_hint:1,1
+                            orientation:"horizontal"
+                            BoxLayout:
+                                size_hint:.70,1
+                                orientation:"vertical"
+                                GridLayout:
+                                    opacity:0
+                                    id:grid_header_result_search4
+                                    size_hint:1,.1
+                                    cols:5
+                                    Label:
+                                        size_hint_x:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('moshahede')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('saat')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tarikh')
+                                    Label:
+                                        size_hint_x:.2
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('tasvir')
+                                    Label:
+                                        size_hint_x:.02
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('radif')
+                                ScrollView:
+                                    size_hint:1,.9
+                                    padding:10
+                                    GridLayout:
+                                        row_default_height: '100dp'
+                                        height: self.minimum_height
+                                        size_hint_y: None
+                                        id:grid_result_search4
+                                        cols:5
+                                        spacing:10
+                                        padding:10
+
+
+                            BoxLayout:
+                                orientation:"vertical"
+                                size_hint:.23,1
+                                padding:5
+                                BoxLayout:
+                                    size_hint_y:.03
+                                BoxLayout:
+                                    size_hint_y:.05
+                                    orientation:'horizontal'
+                                    Spinner:
+                                        text:'../'
+                                        id:txt_select_soojeh4
+                                        values:app.get_list_soojeh()
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('select_soojeh')
+                                BoxLayout:
+                                    size_hint:1,.1
+                                    text:''
+                                GridLayout:
+                                    spacing:10
+                                    padding:10
+                                    size_hint:1,.3
+                                    cols:4
+
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_sal_sp4
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_mah_sp4
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_rooz_sp4
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('az_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:az_saat_sp4
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('az_saat')
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_sal_sp4
+                                        text:'1398'
+                                        values:app.get_list_sal()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_mah_sp4
+                                        text:'1'
+                                        values:app.get_list_mah()
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_rooz_sp4
+                                        text:'1'
+                                        values:app.get_list_rooz()
+                                    Label:
+                                        size_hint_y:.1
+                                        text:app.convert_code_string('ta_tarikh')
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                    Label:
+                                        size_hint_y:.1
+                                    Label:
+                                        size_hint_y:.1
+                                    Spinner:
+                                        size_hint_y:.1
+                                        id:ta_saat_sp4
+                                        text:"01"
+                                        values:app.get_list_saat()
+                                    Label:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('ta_saat')
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Button:
+                                        size_hint_y:.1
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        id:btn_search_history4
+                                        text:app.convert_code_string('search')
+                                        on_press:self.parent.parent.parent.parent.parent.parent.parent.parent.clicked_btn_search(4)
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                    Label:
+                                        size_hint_y:.1
+                                        text:'  '
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+                                BoxLayout:
+                                    text:''
+                                    size_hint_y:.15
+
+
+                            BoxLayout:
+                                size_hint:.05,1
+                                orientation:"vertical"
+                                Label:
+                                    size_hint:1,.04
+                                    text:''
+                                Label:
+                                    size_hint:1,.01
+                                    id:lbl_tab_cam4_title
+                                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                                GridLayout:
+                                    size_hint:1,.98
+                                    cols:2
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('chehreh')
+                                    CheckBox:
+                                        id:txt_ch_box_history_face4
+                                        group:'ch_box_show_camera'
+                                        active:True
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('pelak')
+                                    CheckBox:
+                                        id:txt_ch_box_history_pelak4
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('person')
+                                    CheckBox:
+                                        id:txt_ch_box_history_person4
+                                        group:'ch_box_show_camera'
+                                    Label:
+                                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                                        text:app.convert_code_string('videos')
+                                    CheckBox:
+                                        id:txt_ch_box_history_video4
+                                        group:'ch_box_show_camera'
+
+
+
+
+
+
+            BoxLayout:
+                size_hint:1,.07
+                padding:10
+                orientation:'horizontal'
+                Button:
+                    id:btn_exit_lhistory
+                    font_name:"Assets/Fonts/BTitrBd.ttf"
+                    width:200
+                    text:'exit'
+                    on_press:self.parent.parent.parent.clicked_btn_exit()
+
+
+
+    Users
+        name:"users"
+        BoxLayout:
+            size_hint:1,1
+            orientation:'horizontal'
+            BoxLayout:
+                size_hint:.6,1
+            BoxLayout:
+                padding:15
+                size_hint:.4,1
+                orientation:"vertical"
+                BoxLayout:
+                    size_hint:1,.1
+                GridLayout:
+                    spacing:10
+                    size_hint:1,.15
+                    cols:3
+                    Button:
+                        text:app.convert_code_string('sabt')
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        on_press:self.parent.parent.parent.parent.clicked_sabte_karbar()
+
+                    TextInput:
+                        id:txt_new_user_ip
+                    Label:
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        text:app.convert_code_string('sabte_karbare_jadid')
+
+
+                    Button:
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        text:app.convert_code_string('hazfe_karbar_az_list')
+                        on_press:self.parent.parent.parent.parent.clicked_hazfe_karbar()
+
+                    Spinner:
+                        text:'...'
+                        id:sp_select_users
+                    Label:
+                        text:app.convert_code_string('list_karbaran')
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+
+                BoxLayout:
+                    size_hint:1,.65
+                BoxLayout:
+                    size_hint:1,.05
+                BoxLayout:
+                    size_hint:1,.05
+                    Button:
+                        text:app.convert_code_string('back')
+                        font_name:"Assets/Fonts/BTitrBd.ttf"
+                        on_press:self.parent.parent.parent.parent.clicked_back_to_menu()
+                        width:100
+                        height:40

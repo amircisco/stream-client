@@ -1,0 +1,478 @@
+# -*- coding: utf-8 -*-
+<WindowManager>
+    Tizer
+        name: "Tizer"
+        BoxLayout:
+            orientation:"vertical"
+            size:self.parent.width,self.parent.height
+            VideoPlayerNoCrl
+                source:"none.jpg"
+                width:self.parent.width
+                height:self.parent.height
+
+    KivyShowVideoFrames
+        name: "KivyShowVideoFrames"
+        BoxLayout:
+            orientation : "horizontal"
+            size:root.width,root.height
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint:.250,1
+
+                Label:
+                    size_hint:1,.01
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint:1,.04
+
+                    Label:
+                        size_hint_x: .01
+                    Button:
+                        size_hint_x: .24
+                        id:btn_setting
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        font_size:22
+                        on_press:self.parent.parent.parent.parent.clicked_setting()
+
+                    Button:
+                        size_hint_x: .24
+                        id:btn_history
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        font_size:22
+                        on_press:self.parent.parent.parent.parent.clicked_history()
+
+                    Button:
+                        size_hint_x: .24
+                        id:btn_dissconnect
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        font_size:22
+                        on_press:self.parent.parent.parent.parent.clicked_dissconnect()
+
+                    Button:
+                        size_hint_x: .24
+                        id:btn_connect
+                        font_name:"Assets/Fonts/BKoodakBold.ttf"
+                        font_size:22
+                        on_press:self.parent.parent.parent.parent.clicked_connect()
+
+                    Label:
+                        size_hint_x: .01
+
+                Label:
+                    size_hint:1,.01
+                BoxLayout:
+                    orientation:"vertical"
+                    size_hint:1,.94
+                    GridLayout:
+                        cols:3
+                        rows:1
+                        size_hint:1,1
+                        id:parent_grid_tbls
+                        opacity:0
+
+                        BoxLayout:
+                            orientation:"vertical"
+                            Label:
+                                size_hint:1,.03
+                                font_size:22
+                                font_name:"Assets/Fonts/BKoodakBold.ttf"
+                                id:label_pelak
+
+
+                            ScrollView:
+                                GridLayout:
+                                    id:data_grid_pelak
+                                    orientation: "vertical"
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    row_default_height: self.parent.parent.width
+                                    cols:1
+
+
+                        BoxLayout:
+                            orientation:"vertical"
+                            Label:
+                                size_hint:1,.03
+                                id:label_face
+                                font_size:22
+                                font_name:"Assets/Fonts/BKoodakBold.ttf"
+
+                            ScrollView:
+                                GridLayout:
+                                    id:data_grid_face
+                                    orientation: "vertical"
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    row_default_height: self.parent.parent.width
+                                    cols:1
+
+
+                        BoxLayout:
+                            orientation:"vertical"
+                            Label:
+                                size_hint:1,.03
+                                id:label_person
+                                font_size:22
+                                font_name:"Assets/Fonts/BKoodakBold.ttf"
+
+                            ScrollView:
+                                GridLayout:
+                                    id:data_grid_person
+                                    orientation: "vertical"
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    row_default_height: self.parent.parent.width
+                                    cols:1
+
+
+
+
+
+
+
+
+            KivyCamera:
+                size_hint:.608,1
+                cols:2
+                rows:2
+                id:parent_grid_videos
+
+
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 3
+                            rectangle: self.x, self.y, self.width, self.height
+                    Image:
+                        id:img1
+                        pos_hint: {"x":0,"y":0}
+                        size_hint:1,1
+                        source:"Assets/icons/none.jpg"
+
+
+                    BoxLayout:
+                        size_hint:1,.1
+                        pos_hint: {"x":0,"y":0}
+                        orientation: "horizontal"
+                        spacing:10
+                        padding:5
+                        Label:
+                            id:cam1_name1
+                            font_name:'Assets/Fonts/BKoodakBold.ttf'
+                            font_size:20
+                            size_hint_x:.5
+                        Label:
+                            size_hint_x:.1
+
+                        GridLayout:
+                            cols:3
+                            rows:3
+                            size_hint_x:.15
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam1_up
+                                size_hint:.45,.3
+                                source:"Assets/icons/up.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam1_left
+                                size_hint:.45,.3
+                                source:"Assets/icons/left.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam1_right
+                                size_hint:.45,.3
+                                source:"Assets/icons/right.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam1_down
+                                size_hint:.45,.3
+                                source:"Assets/icons/down.png"
+                            Label:
+                                size_hint:.45,.3
+
+                        BoxLayout:
+                            size_hint_x:.15
+                            orientation:"horizontal"
+                            IconButtonZoom:
+                                id:cam1_in
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-in.png'
+
+
+                            Label:
+                                size_hint:.1,.9
+                            IconButtonZoom:
+                                id:cam1_out
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-out.png'
+
+                            Label:
+                                size_hint:.20,.9
+                            Image:
+                                size_hint:.80,.9
+                                source:'Assets/icons/state_green.png'
+                                id:state_1
+
+
+
+
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 3
+                            rectangle: self.x, self.y, self.width, self.height
+                    Image:
+                        id:img2
+                        pos_hint: {"x":0,"y":0}
+                        size_hint:1,1
+                        source:"Assets/icons/none.jpg"
+
+                    BoxLayout:
+                        size_hint:1,.1
+                        pos_hint: {"x":0,"y":0}
+                        orientation: "horizontal"
+                        spacing:10
+                        padding:5
+                        Label:
+                            id:cam2_name2
+                            font_name:'Assets/Fonts/BKoodakBold.ttf'
+                            font_size:20
+                            size_hint_x:.5
+                        Label:
+                            size_hint_x:.1
+
+                        GridLayout:
+                            cols:3
+                            rows:3
+                            size_hint_x:.15
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam2_up
+                                size_hint:.45,.3
+                                source:"Assets/icons/up.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam2_left
+                                size_hint:.45,.3
+                                source:"Assets/icons/left.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam2_right
+                                size_hint:.45,.3
+                                source:"Assets/icons/right.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam2_down
+                                size_hint:.45,.3
+                                source:"Assets/icons/down.png"
+                            Label:
+                                size_hint:.45,.3
+
+
+                        BoxLayout:
+                            size_hint_x:.15
+                            orientation:"horizontal"
+                            IconButtonZoom:
+                                id:cam2_in
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-in.png'
+
+
+                            Label:
+                                size_hint:.1,.9
+                            IconButtonZoom:
+                                id:cam2_out
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-out.png'
+
+                            Label:
+                                size_hint:.20,.9
+                            Image:
+                                size_hint:.80,.9
+                                source:'Assets/icons/state_green.png'
+                                id:state_2
+
+
+
+
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 3
+                            rectangle: self.x, self.y, self.width, self.height
+                    Image:
+                        id:img3
+                        pos_hint: {"x":0,"y":0}
+                        size_hint:1,1
+                        source:"Assets/icons/none.jpg"
+
+                    BoxLayout:
+                        size_hint:1,.1
+                        pos_hint: {"x":0,"y":0}
+                        orientation: "horizontal"
+                        spacing:10
+                        padding:5
+                        Label:
+                            id:cam3_name3
+                            font_name:'Assets/Fonts/BKoodakBold.ttf'
+                            font_size:20
+                            size_hint_x:.5
+                        Label:
+                            size_hint_x:.1
+
+                        GridLayout:
+                            cols:3
+                            rows:3
+                            size_hint_x:.15
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam3_up
+                                size_hint:.45,.3
+                                source:"Assets/icons/up.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam3_left
+                                size_hint:.45,.3
+                                source:"Assets/icons/left.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam3_right
+                                size_hint:.45,.3
+                                source:"Assets/icons/right.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam3_down
+                                size_hint:.45,.3
+                                source:"Assets/icons/down.png"
+                            Label:
+                                size_hint:.45,.3
+
+
+                        BoxLayout:
+                            size_hint_x:.15
+                            orientation:"horizontal"
+                            IconButtonZoom:
+                                id:cam3_in
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-in.png'
+
+
+                            Label:
+                                size_hint:.1,.9
+                            IconButtonZoom:
+                                id:cam3_out
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-out.png'
+
+                            Label:
+                                size_hint:.20,.9
+                            Image:
+                                size_hint:.80,.9
+                                source:'Assets/icons/state_green.png'
+                                id:state_3
+
+
+
+
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 3
+                            rectangle: self.x, self.y, self.width, self.height
+                    Image:
+                        id:img4
+                        pos_hint: {"x":0,"y":0}
+                        size_hint:1,1
+                        source:"Assets/icons/none.jpg"
+                    BoxLayout:
+                        size_hint:1,.1
+                        pos_hint: {"x":0,"y":0}
+                        orientation: "horizontal"
+                        spacing:10
+                        padding:5
+                        Label:
+                            id:cam4_name4
+                            font_name:'Assets/Fonts/BKoodakBold.ttf'
+                            font_size:20
+                            size_hint_x:.5
+                        Label:
+                            size_hint_x:.1
+
+                        GridLayout:
+                            cols:3
+                            rows:3
+                            size_hint_x:.15
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam4_up
+                                size_hint:.45,.3
+                                source:"Assets/icons/up.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam4_left
+                                size_hint:.45,.3
+                                source:"Assets/icons/left.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam4_right
+                                size_hint:.45,.3
+                                source:"Assets/icons/right.png"
+                            Label:
+                                size_hint:.45,.3
+                            IconButtonArrow:
+                                id:cam4_down
+                                size_hint:.45,.3
+                                source:"Assets/icons/down.png"
+                            Label:
+                                size_hint:.45,.3
+
+
+                        BoxLayout:
+                            size_hint_x:.15
+                            orientation:"horizontal"
+                            IconButtonZoom:
+                                id:cam4_in
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-in.png'
+
+
+                            Label:
+                                size_hint:.1,.9
+                            IconButtonZoom:
+                                id:cam4_out
+                                size_hint:.80,.9
+                                source: 'Assets/icons/zoom-out.png'
+
+                            Label:
+                                size_hint:.20,.9
+                            Image:
+                                size_hint:.80,.9
+                                source:'Assets/icons/state_green.png'
+                                id:state_4
+
+
